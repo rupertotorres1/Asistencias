@@ -54,6 +54,7 @@ public class AsistenciasGUI extends javax.swing.JFrame {
         jTextField1.setText("Sistema de Asistencias: Robotica");
         jTextField1.setAutoscrolls(false);
         jTextField1.setBorder(null);
+        jTextField1.setName("text_titulo"); // NOI18N
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -89,6 +90,7 @@ public class AsistenciasGUI extends javax.swing.JFrame {
         jTextField5.setText("Sistema de Asistencias: Robotica");
         jTextField5.setAutoscrolls(false);
         jTextField5.setBorder(null);
+        jTextField5.setName("text_titulo2"); // NOI18N
         jTextField5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField5ActionPerformed(evt);
@@ -123,6 +125,7 @@ public class AsistenciasGUI extends javax.swing.JFrame {
         jTextField6.setText("Sistema de Asistencias: Robotica");
         jTextField6.setAutoscrolls(false);
         jTextField6.setBorder(null);
+        jTextField6.setName("text_titulo3"); // NOI18N
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField6ActionPerformed(evt);
@@ -157,6 +160,7 @@ public class AsistenciasGUI extends javax.swing.JFrame {
         jTextField7.setText("Sistema de Asistencias: Robotica");
         jTextField7.setAutoscrolls(false);
         jTextField7.setBorder(null);
+        jTextField7.setName("text_titulo4"); // NOI18N
         jTextField7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField7ActionPerformed(evt);
