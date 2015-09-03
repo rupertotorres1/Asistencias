@@ -5,13 +5,18 @@
  */
 package asistencias;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author rup
  */
 public class AsistenciasGUI extends javax.swing.JFrame {
-
-    /**
+    Connection conn = new DBConnection().connect();
+     /**
      * Creates new form AsistenciasGUI
      */
     public AsistenciasGUI() {
@@ -303,7 +308,22 @@ public class AsistenciasGUI extends javax.swing.JFrame {
 
     private void btnAgregarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarAlumnoActionPerformed
         // TODO add your handling code here:
-        String sql = "insert into asistenciasrobot.Alumnos (name, becariorobotica) values(  "
+        String sql = "insert into asistenciasrobot.Alumnos (name, becariorobotica) values (?, ?)";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, textNombreAlumno.getText());
+            ps.setBoolean(2, checkBecarioSi.isSelected());
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()){
+                this.dispose();
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "Error");
+            }
+        }
+        catch (Exception e){
+            
+        }
     }//GEN-LAST:event_btnAgregarAlumnoActionPerformed
 
     /**
