@@ -32,6 +32,12 @@ public class AsistenciasGUI extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         jTextField5 = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        textNombreAlumno = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        checkBecarioSi = new javax.swing.JCheckBox();
+        btnAgregarAlumno = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jTextField6 = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
@@ -97,6 +103,39 @@ public class AsistenciasGUI extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Droid Sans", 0, 18)); // NOI18N
+        jLabel1.setText("Agregar Alumno");
+        jLabel1.setName("labelAgregarAlumnos"); // NOI18N
+
+        jLabel2.setFont(new java.awt.Font("Droid Sans", 0, 14)); // NOI18N
+        jLabel2.setText("Nombre:");
+
+        textNombreAlumno.setName("textNombreAlumno"); // NOI18N
+        textNombreAlumno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textNombreAlumnoActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Droid Sans", 0, 14)); // NOI18N
+        jLabel3.setText("Becario en Robotica:");
+        jLabel3.setName("labelAlumnosBecario"); // NOI18N
+
+        checkBecarioSi.setText("Si");
+        checkBecarioSi.setName("checkAlumnosBecario"); // NOI18N
+        checkBecarioSi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkBecarioSiActionPerformed(evt);
+            }
+        });
+
+        btnAgregarAlumno.setText("Agregar");
+        btnAgregarAlumno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarAlumnoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -105,14 +144,50 @@ public class AsistenciasGUI extends javax.swing.JFrame {
                 .addGap(144, 144, 144)
                 .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(148, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(29, 29, 29)
+                                .addComponent(textNombreAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(33, 33, 33))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(108, 108, 108)))
+                        .addGroup(jPanel5Layout.createSequentialGroup()
+                            .addComponent(jLabel3)
+                            .addGap(92, 92, 92)
+                            .addComponent(checkBecarioSi)
+                            .addGap(179, 179, 179)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addComponent(btnAgregarAlumno)
+                        .addGap(168, 168, 168))))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(536, Short.MAX_VALUE))
+                .addGap(51, 51, 51)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textNombreAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(43, 43, 43)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(checkBecarioSi))
+                .addGap(29, 29, 29)
+                .addComponent(btnAgregarAlumno)
+                .addContainerGap(261, Short.MAX_VALUE))
         );
+
+        textNombreAlumno.getAccessibleContext().setAccessibleName("textNombreAlumno");
+        checkBecarioSi.getAccessibleContext().setAccessibleName("checkAlumnosBecario");
 
         jTabbedPane2.addTab("Alumnos", jPanel5);
 
@@ -218,6 +293,19 @@ public class AsistenciasGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField7ActionPerformed
 
+    private void checkBecarioSiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBecarioSiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_checkBecarioSiActionPerformed
+
+    private void textNombreAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNombreAlumnoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textNombreAlumnoActionPerformed
+
+    private void btnAgregarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarAlumnoActionPerformed
+        // TODO add your handling code here:
+        String sql = "insert into asistenciasrobot.Alumnos (name, becariorobotica) values(  "
+    }//GEN-LAST:event_btnAgregarAlumnoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -254,6 +342,11 @@ public class AsistenciasGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAgregarAlumno;
+    private javax.swing.JCheckBox checkBecarioSi;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
@@ -263,5 +356,6 @@ public class AsistenciasGUI extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField textNombreAlumno;
     // End of variables declaration//GEN-END:variables
 }
