@@ -23,9 +23,9 @@ public class DBConnection {
         catch (ClassNotFoundException cnfe) {
             System.out.println("Connection Failed" + cnfe);
         }
-        String url = "jdbc:mysql://localhost:8888/asistencias";
+        String url = "jdbc:mysql://localhost:8888/asistenciasrobot";
         try {
-            DBConnection = (Connection) DriverManager.getConnection(url, "root", "");
+            DBConnection = (Connection) DriverManager.getConnection(url, "root", "ruperto98");
             System.out.println("Database Connected");
         }
         catch (SQLException se) {

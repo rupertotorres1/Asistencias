@@ -313,13 +313,9 @@ public class AsistenciasGUI extends javax.swing.JFrame {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, textNombreAlumno.getText());
             ps.setBoolean(2, checkBecarioSi.isSelected());
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()){
-                this.dispose();
-            }
-            else {
-                JOptionPane.showMessageDialog(null, "Error");
-            }
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Agregado");
+            
         }
         catch (Exception e){
             
