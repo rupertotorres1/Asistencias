@@ -57,6 +57,14 @@ public class AsistenciasGUI extends javax.swing.JFrame {
         btnEliminarAlumno = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jTextField6 = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jComboBoxProyectos = new javax.swing.JComboBox();
+        btnTerminarProyecto = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        textNombreProyecto = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        btnAgregarProyecto = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jTextField7 = new javax.swing.JTextField();
 
@@ -90,8 +98,8 @@ public class AsistenciasGUI extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(190, 190, 190)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(193, Short.MAX_VALUE))
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(185, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,7 +168,7 @@ public class AsistenciasGUI extends javax.swing.JFrame {
         });
 
         jLabel4.setFont(new java.awt.Font("Droid Sans", 0, 18)); // NOI18N
-        jLabel4.setText("Eliminar Alumno");
+        jLabel4.setText("Editar Alumno");
 
         btnEliminarAlumno.setText("Eliminar");
         btnEliminarAlumno.addActionListener(new java.awt.event.ActionListener() {
@@ -182,9 +190,11 @@ public class AsistenciasGUI extends javax.swing.JFrame {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jComboBoxAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnEliminarAlumno))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
+                            .addComponent(btnEliminarAlumno)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGap(87, 87, 87)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
@@ -202,7 +212,7 @@ public class AsistenciasGUI extends javax.swing.JFrame {
                 .addGap(28, 28, 28))
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(190, 190, 190)
-                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
@@ -250,21 +260,112 @@ public class AsistenciasGUI extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setFont(new java.awt.Font("Droid Sans", 0, 18)); // NOI18N
+
+        jComboBoxProyectos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxProyectosActionPerformed(evt);
+            }
+        });
+
+        btnTerminarProyecto.setText("Terminar");
+        btnTerminarProyecto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTerminarProyectoActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setFont(new java.awt.Font("Droid Sans", 0, 14)); // NOI18N
+        jLabel6.setText("Nombre:");
+
+        textNombreProyecto.setName("textNombreAlumno"); // NOI18N
+        textNombreProyecto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textNombreProyectoActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setFont(new java.awt.Font("Droid Sans", 0, 18)); // NOI18N
+        jLabel7.setText("Agregar Proyecto");
+        jLabel7.setName("labelAgregarAlumnos"); // NOI18N
+
+        btnAgregarProyecto.setText("Agregar");
+        btnAgregarProyecto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarProyectoActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("Droid Sans", 0, 18)); // NOI18N
+        jLabel8.setText("Terminar Proyecto");
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(192, Short.MAX_VALUE)
-                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(191, 191, 191))
+                .addGap(184, 184, 184)
+                .addComponent(btnTerminarProyecto)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnAgregarProyecto)
+                .addGap(177, 177, 177))
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(jPanel6Layout.createSequentialGroup()
+                            .addGap(185, 185, 185)
+                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel6Layout.createSequentialGroup()
+                            .addGap(144, 144, 144)
+                            .addComponent(jLabel8)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(71, 71, 71)
+                        .addComponent(jComboBoxProyectos, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(190, Short.MAX_VALUE))
+            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel6Layout.createSequentialGroup()
+                    .addContainerGap(469, Short.MAX_VALUE)
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(29, 29, 29)
+                            .addComponent(textNombreProyecto, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(75, 75, 75)))
+                    .addGap(52, 52, 52)))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(536, Short.MAX_VALUE))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(135, 135, 135)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
+                        .addGap(106, 106, 106))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jComboBoxProyectos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(58, 58, 58)))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAgregarProyecto)
+                    .addComponent(btnTerminarProyecto))
+                .addGap(246, 246, 246))
+            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel6Layout.createSequentialGroup()
+                    .addGap(188, 188, 188)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(14, 14, 14)
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(textNombreProyecto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(316, 316, 316)))
         );
 
         jTabbedPane2.addTab("Proyectos", jPanel6);
@@ -289,10 +390,10 @@ public class AsistenciasGUI extends javax.swing.JFrame {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addContainerGap(195, Short.MAX_VALUE)
-                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(188, 188, 188))
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(185, 185, 185)
+                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(190, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -380,6 +481,47 @@ public class AsistenciasGUI extends javax.swing.JFrame {
         }
         jComboBoxAlumnos.removeItem(jComboBoxAlumnos.getSelectedItem());
     }//GEN-LAST:event_btnEliminarAlumnoActionPerformed
+
+    private void jComboBoxProyectosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxProyectosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxProyectosActionPerformed
+
+    private void btnTerminarProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTerminarProyectoActionPerformed
+        // TODO add your handling code here:
+        String sql = "DELETE FROM asistenciasrobot.Proyectos WHERE name=?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, (String)jComboBoxProyectos.getSelectedItem());
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Terminado");
+            
+        }
+        catch (Exception e){
+            
+        }
+        jComboBoxProyectos.removeItem(jComboBoxProyectos.getSelectedItem());
+    }//GEN-LAST:event_btnTerminarProyectoActionPerformed
+
+    private void textNombreProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNombreProyectoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textNombreProyectoActionPerformed
+
+    private void btnAgregarProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProyectoActionPerformed
+        // TODO add your handling code here:
+        String sql = "insert into asistenciasrobot.Proyectos (name) values (?)";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, textNombreProyecto.getText());
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Agregado");
+            
+        }
+        catch (Exception e){
+            
+        }
+        jComboBoxProyectos.addItem(textNombreProyecto.getText());
+        textNombreProyecto.setText("");
+    }//GEN-LAST:event_btnAgregarProyectoActionPerformed
     
     /**private static int countRows(Connection conn, String tableName) throws SQLException {
     // select the number of rows in the table
@@ -456,13 +598,20 @@ public class AsistenciasGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarAlumno;
+    private javax.swing.JButton btnAgregarProyecto;
     private javax.swing.JButton btnEliminarAlumno;
+    private javax.swing.JButton btnTerminarProyecto;
     private javax.swing.JCheckBox checkBecarioSi;
     private javax.swing.JComboBox jComboBoxAlumnos;
+    private javax.swing.JComboBox jComboBoxProyectos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
@@ -473,5 +622,6 @@ public class AsistenciasGUI extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField textNombreAlumno;
+    private javax.swing.JTextField textNombreProyecto;
     // End of variables declaration//GEN-END:variables
 }
