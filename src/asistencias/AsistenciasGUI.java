@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 /**
@@ -26,7 +27,8 @@ public class AsistenciasGUI extends javax.swing.JFrame {
     public AsistenciasGUI() {
         initComponents();
         try {
-            selectNameFromSQL(conn, "asistenciasrobot.Alumnos");
+            selectNameFromSQL(conn, "asistenciasrobot.Alumnos", jComboBoxAlumnos);
+            selectNameFromSQL(conn, "asistenciasrobot.Proyectos", jComboBoxProyectos);
         } catch (SQLException ex) {
             Logger.getLogger(AsistenciasGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -542,7 +544,7 @@ public class AsistenciasGUI extends javax.swing.JFrame {
     }
     **/
     
-    private void selectNameFromSQL(Connection conn, String tableName) throws SQLException {
+    private void selectNameFromSQL(Connection conn, String tableName, JComboBox combobox) throws SQLException {
     // select name from a table
         Statement stmt = null;
         ResultSet rs = null;
@@ -551,7 +553,7 @@ public class AsistenciasGUI extends javax.swing.JFrame {
             rs = stmt.executeQuery("SELECT name FROM " + tableName);
              // get the number of rows from the result set
             while(rs.next()){
-                jComboBoxAlumnos.addItem(rs.getString(1));
+                combobox.addItem(rs.getString(1));
             }
             
         }finally {
