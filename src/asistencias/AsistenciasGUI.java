@@ -54,6 +54,7 @@ public class AsistenciasGUI extends javax.swing.JFrame {
         btnAgregarAlumno = new javax.swing.JButton();
         jComboBoxAlumnos = new javax.swing.JComboBox();
         jLabel4 = new javax.swing.JLabel();
+        btnEliminarAlumno = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jTextField6 = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
@@ -161,6 +162,13 @@ public class AsistenciasGUI extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Droid Sans", 0, 18)); // NOI18N
         jLabel4.setText("Eliminar Alumno");
 
+        btnEliminarAlumno.setText("Eliminar");
+        btnEliminarAlumno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarAlumnoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -174,7 +182,8 @@ public class AsistenciasGUI extends javax.swing.JFrame {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jComboBoxAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnEliminarAlumno))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,7 +222,8 @@ public class AsistenciasGUI extends javax.swing.JFrame {
                 .addGap(43, 43, 43)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(checkBecarioSi))
+                    .addComponent(checkBecarioSi)
+                    .addComponent(btnEliminarAlumno))
                 .addGap(29, 29, 29)
                 .addComponent(btnAgregarAlumno)
                 .addContainerGap(185, Short.MAX_VALUE))
@@ -348,13 +358,30 @@ public class AsistenciasGUI extends javax.swing.JFrame {
         catch (Exception e){
             
         }
+        jComboBoxAlumnos.addItem(textNombreAlumno.getText());
+        textNombreAlumno.setText("");
     }//GEN-LAST:event_btnAgregarAlumnoActionPerformed
 
     private void jComboBoxAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxAlumnosActionPerformed
 
     }//GEN-LAST:event_jComboBoxAlumnosActionPerformed
+
+    private void btnEliminarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarAlumnoActionPerformed
+        String sql = "DELETE FROM asistenciasrobot.Alumnos WHERE name=?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, (String)jComboBoxAlumnos.getSelectedItem());
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Eliminado");
+            
+        }
+        catch (Exception e){
+            
+        }
+        jComboBoxAlumnos.removeItem(jComboBoxAlumnos.getSelectedItem());
+    }//GEN-LAST:event_btnEliminarAlumnoActionPerformed
     
-    private static int countRows(Connection conn, String tableName) throws SQLException {
+    /**private static int countRows(Connection conn, String tableName) throws SQLException {
     // select the number of rows in the table
         Statement stmt = null;
         ResultSet rs = null;
@@ -371,6 +398,7 @@ public class AsistenciasGUI extends javax.swing.JFrame {
         }
         return rowCount;
     }
+    **/
     
     private void selectNameFromSQL(Connection conn, String tableName) throws SQLException {
     // select name from a table
@@ -390,11 +418,6 @@ public class AsistenciasGUI extends javax.swing.JFrame {
         }
     }
      
-    //private void AlumnosComboBox() throws SQLException{
-     //   for(int i=1; i<=countRows(conn, "asistenciasrobot.Alumnos"); i++){
-    //       jComboBoxAlumnos.addItem(selectNameFromSQL(conn, "asistenciasrobot.Alumnos", i));
-    //    }
-    //}
      
     /**
      * @param args the command line arguments
@@ -433,6 +456,7 @@ public class AsistenciasGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarAlumno;
+    private javax.swing.JButton btnEliminarAlumno;
     private javax.swing.JCheckBox checkBecarioSi;
     private javax.swing.JComboBox jComboBoxAlumnos;
     private javax.swing.JLabel jLabel1;
