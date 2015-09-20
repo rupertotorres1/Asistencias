@@ -481,7 +481,7 @@ public class AsistenciasGUI extends javax.swing.JFrame {
 
     private void btnAgregarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarAlumnoActionPerformed
         // TODO add your handling code here:
-        String sql = "insert into asistenciasrobot.Alumnos (name, totalhoras, totalasistencias, becariorobotica, faltas, proyecto) values (?, 0, 0, ?, 0, ?)";
+        String sql = "insert into asistenciasrobot.Alumnos (name, totalhoras, totalasistencias, becariorobotica, faltas, proyecto) values (?, 0.0, 0, ?, 0, ?)";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, textNombreAlumno.getText());

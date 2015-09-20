@@ -6,6 +6,7 @@
 package asistencias;
 
 import static asistencias.AsistenciasGUI.conn;
+import java.awt.HeadlessException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -207,14 +208,14 @@ public class FrameTomarLista extends javax.swing.JFrame {
         String sql = "UPDATE asistenciasrobot.Alumnos SET totalhoras=totalhoras + ?, totalasistencias=totalasistencias+1, proyecto= ? WHERE name=?";
         try {
             PreparedStatement ps = AsistenciasGUI.conn.prepareStatement(sql);
-            ps.setFloat(1, (float)comboListaHoras.getSelectedItem());
+            ps.setFloat(1, Float.valueOf((String)comboListaHoras.getSelectedItem()));
             ps.setString(2, (String)comboListaProyectos.getSelectedItem());
             ps.setString(3, (String)comboListaAlumnos.getSelectedItem());
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Asistencia");
             
         }
-        catch (Exception e){
+        catch (SQLException | HeadlessException e){
             
         }
         comboListaAlumnos.removeItem(comboListaAlumnos.getSelectedItem());
