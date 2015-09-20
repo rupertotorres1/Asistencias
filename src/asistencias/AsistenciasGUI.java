@@ -481,11 +481,12 @@ public class AsistenciasGUI extends javax.swing.JFrame {
 
     private void btnAgregarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarAlumnoActionPerformed
         // TODO add your handling code here:
-        String sql = "insert into asistenciasrobot.Alumnos (name, totalhoras, totalasistencias, becariorobotica, faltas) values (?, 0, 0, ?, 0)";
+        String sql = "insert into asistenciasrobot.Alumnos (name, totalhoras, totalasistencias, becariorobotica, faltas, proyecto) values (?, 0, 0, ?, 0, ?)";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, textNombreAlumno.getText());
             ps.setBoolean(2, checkBecarioSi.isSelected());
+            ps.setString(3, "");
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Agregado");
             
@@ -502,7 +503,7 @@ public class AsistenciasGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxAlumnosActionPerformed
 
     private void btnEliminarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarAlumnoActionPerformed
-        String sql = "DELETE FROM asistenciasrobot.Alumnos WHERE name=?";
+        String sql = "DELETE FROM asistenciasrobot.Alumnos WHERE name IS NULL OR name=?";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, (String)jComboBoxAlumnos.getSelectedItem());
