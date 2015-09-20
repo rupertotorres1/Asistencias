@@ -204,7 +204,7 @@ public class FrameTomarLista extends javax.swing.JFrame {
     }//GEN-LAST:event_btnListaFaltaActionPerformed
 
     private void btnListaAsistenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaAsistenciaActionPerformed
-        String sql = "UPDATE asistenciasrobot.Alumnos SET totalasistencias=totalasistencias+1, totalhoras=totalhoras+?, proyecto=? WHERE name=?";
+        String sql = "UPDATE asistenciasrobot.Alumnos SET totalhoras=totalhoras + ?, totalasistencias=totalasistencias+1, proyecto= ? WHERE name=?";
         try {
             PreparedStatement ps = AsistenciasGUI.conn.prepareStatement(sql);
             ps.setFloat(1, (float)comboListaHoras.getSelectedItem());
