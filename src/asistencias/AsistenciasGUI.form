@@ -590,18 +590,15 @@
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                                      <Component id="checkBecarioDatos" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="textHorasDatos" pref="99" max="32767" attributes="0"/>
-                                  <Component id="textAsistenciasDatos" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="textAsistenciasDatos" alignment="0" pref="183" max="32767" attributes="0"/>
                                   <Component id="textFaltasDatos" alignment="0" max="32767" attributes="0"/>
                                   <Component id="textProyectoDatos" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="textHorasDatos" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="checkBecarioDatos" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="200" max="32767" attributes="0"/>
+                      <EmptySpace pref="188" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -614,7 +611,7 @@
                       <Component id="comboDatosAlumnos" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnDatosAlumnos" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="textHorasDatos" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -639,7 +636,7 @@
                           <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="textProyectoDatos" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="56" max="32767" attributes="0"/>
+                      <EmptySpace pref="67" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

@@ -28,6 +28,7 @@ public class AsistenciasGUI extends javax.swing.JFrame {
      */
     public AsistenciasGUI() {
         initComponents();
+        checkBecarioDatos.setEnabled(false);
         try {
             SelectNameFromSQL("asistenciasrobot.Alumnos", jComboBoxAlumnos);
             SelectNameFromSQL("asistenciasrobot.Alumnos", comboDatosAlumnos);
@@ -487,14 +488,12 @@ public class AsistenciasGUI extends javax.swing.JFrame {
                                 .addComponent(jLabel9)))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addGap(15, 15, 15)
-                                .addComponent(checkBecarioDatos))
-                            .addComponent(textHorasDatos, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
-                            .addComponent(textAsistenciasDatos)
+                            .addComponent(textAsistenciasDatos, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
                             .addComponent(textFaltasDatos)
-                            .addComponent(textProyectoDatos))))
-                .addContainerGap(200, Short.MAX_VALUE))
+                            .addComponent(textProyectoDatos)
+                            .addComponent(textHorasDatos)
+                            .addComponent(checkBecarioDatos))))
+                .addContainerGap(188, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -505,7 +504,7 @@ public class AsistenciasGUI extends javax.swing.JFrame {
                 .addComponent(comboDatosAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnDatosAlumnos)
-                .addGap(41, 41, 41)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textHorasDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
@@ -525,7 +524,7 @@ public class AsistenciasGUI extends javax.swing.JFrame {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
                     .addComponent(textProyectoDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Datos", jPanel7);
@@ -779,8 +778,9 @@ public class AsistenciasGUI extends javax.swing.JFrame {
             rs = stmt.executeQuery("SELECT becariorobotica FROM asistenciasrobot.Alumnos WHERE name = '" + (String)comboDatosAlumnos.getSelectedItem() + "'");
              // get the number of rows from the result set
             if(rs.next()){
+                checkBecarioDatos.setEnabled(true);
                 checkBecarioDatos.setSelected(rs.getBoolean(1));
-            }   
+            }   checkBecarioDatos.setEnabled(false);
         }finally {
             rs.close();
             stmt.close();
