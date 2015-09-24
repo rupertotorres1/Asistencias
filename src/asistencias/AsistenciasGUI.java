@@ -15,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -28,9 +29,9 @@ public class AsistenciasGUI extends javax.swing.JFrame {
     public AsistenciasGUI() {
         initComponents();
         try {
-            selectNameFromSQL("asistenciasrobot.Alumnos", jComboBoxAlumnos);
-            selectNameFromSQL("asistenciasrobot.Alumnos", comboDatosAlumnos);
-            selectNameFromSQL("asistenciasrobot.Proyectos", jComboBoxProyectos);
+            SelectNameFromSQL("asistenciasrobot.Alumnos", jComboBoxAlumnos);
+            SelectNameFromSQL("asistenciasrobot.Alumnos", comboDatosAlumnos);
+            SelectNameFromSQL("asistenciasrobot.Proyectos", jComboBoxProyectos);
         } catch (SQLException ex) {
             Logger.getLogger(AsistenciasGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -453,6 +454,12 @@ public class AsistenciasGUI extends javax.swing.JFrame {
 
         jLabel13.setText("Proyecto");
 
+        textAsistenciasDatos.setEditable(false);
+
+        textFaltasDatos.setEditable(false);
+
+        textProyectoDatos.setEditable(false);
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -470,13 +477,17 @@ public class AsistenciasGUI extends javax.swing.JFrame {
                         .addComponent(btnDatosAlumnos)))
                 .addContainerGap(188, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel13)
-                    .addComponent(jLabel12)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel9))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel13)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel10)))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel9)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(textHorasDatos, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
@@ -583,8 +594,8 @@ public class AsistenciasGUI extends javax.swing.JFrame {
         jComboBoxAlumnos.removeAllItems();
         comboDatosAlumnos.removeAllItems();
         try {
-            selectNameFromSQL("asistenciasrobot.Alumnos", jComboBoxAlumnos);
-            selectNameFromSQL("asistenciasrobot.Alumnos", comboDatosAlumnos);
+            SelectNameFromSQL("asistenciasrobot.Alumnos", jComboBoxAlumnos);
+            SelectNameFromSQL("asistenciasrobot.Alumnos", comboDatosAlumnos);
         } catch (SQLException ex) {
             Logger.getLogger(AsistenciasGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -610,8 +621,8 @@ public class AsistenciasGUI extends javax.swing.JFrame {
         jComboBoxAlumnos.removeAllItems();
         comboDatosAlumnos.removeAllItems();
         try {
-            selectNameFromSQL("asistenciasrobot.Alumnos", jComboBoxAlumnos);
-            selectNameFromSQL("asistenciasrobot.Alumnos", comboDatosAlumnos);
+            SelectNameFromSQL("asistenciasrobot.Alumnos", jComboBoxAlumnos);
+            SelectNameFromSQL("asistenciasrobot.Alumnos", comboDatosAlumnos);
         } catch (SQLException ex) {
             Logger.getLogger(AsistenciasGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -668,7 +679,13 @@ public class AsistenciasGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void btnDatosAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatosAlumnosActionPerformed
-        // TODO add your handling code here:
+        try {
+            SelectIntParaTextboxSQL("totalasistencias", textAsistenciasDatos);
+            SelectIntParaTextboxSQL("faltas", textFaltasDatos);
+            SelectFloatParaTextboxSQL("totalhoras", textHorasDatos);
+        } catch (SQLException ex) {
+            Logger.getLogger(AsistenciasGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnDatosAlumnosActionPerformed
     
     /**private static int countRows(Connection conn, String tableName) throws SQLException {
@@ -690,7 +707,7 @@ public class AsistenciasGUI extends javax.swing.JFrame {
     }
     **/
     
-    static void selectNameFromSQL(String tableName, JComboBox combobox) throws SQLException {
+    static void SelectNameFromSQL(String tableName, JComboBox combobox) throws SQLException {
     // select name from a table
         Statement stmt = null;
         ResultSet rs = null;
@@ -708,7 +725,37 @@ public class AsistenciasGUI extends javax.swing.JFrame {
         }
     }
     
+    private void SelectIntParaTextboxSQL(String columna, JTextField textfield) throws SQLException {
+        Statement stmt = null;
+        ResultSet rs = null;
+        try {
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery("SELECT " + columna + " FROM asistenciasrobot.Alumnos WHERE name = '" + (String)comboDatosAlumnos.getSelectedItem() + "'");
+             // get the number of rows from the result set
+            if(rs.next()){
+                textfield.setText(String.valueOf(rs.getInt(1)));
+            }   
+        }finally {
+            rs.close();
+            stmt.close();
+        }
+    }
     
+    private void SelectFloatParaTextboxSQL(String columna, JTextField textfield) throws SQLException {
+        Statement stmt = null;
+        ResultSet rs = null;
+        try {
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery("SELECT " + columna + " FROM asistenciasrobot.Alumnos WHERE name = '" + (String)comboDatosAlumnos.getSelectedItem() + "'");
+             // get the number of rows from the result set
+            if(rs.next()){
+                textfield.setText(String.valueOf(rs.getFloat(1)));
+            }   
+        }finally {
+            rs.close();
+            stmt.close();
+        }
+    }
      
      
     /**
