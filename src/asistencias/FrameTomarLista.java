@@ -5,12 +5,9 @@
  */
 package asistencias;
 
-import static asistencias.AsistenciasGUI.conn;
 import java.awt.HeadlessException;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -205,7 +202,8 @@ public class FrameTomarLista extends javax.swing.JFrame {
     }//GEN-LAST:event_btnListaFaltaActionPerformed
 
     private void btnListaAsistenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaAsistenciaActionPerformed
-        String sql = "UPDATE asistenciasrobot.Alumnos SET totalhoras=totalhoras + ?, totalasistencias=totalasistencias+1, proyecto= ? WHERE name=?";
+        String sql = "UPDATE asistenciasrobot.Alumnos SET" +
+        " totalhoras=totalhoras + ?, totalasistencias=totalasistencias+1, proyecto= ? WHERE name=?";
         try {
             PreparedStatement ps = AsistenciasGUI.conn.prepareStatement(sql);
             ps.setFloat(1, Float.valueOf((String)comboListaHoras.getSelectedItem()));
