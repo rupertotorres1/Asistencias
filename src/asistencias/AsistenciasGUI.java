@@ -679,6 +679,8 @@ public class AsistenciasGUI extends javax.swing.JFrame {
             SelectIntParaTextboxSQL("totalasistencias", textAsistenciasDatos);
             SelectIntParaTextboxSQL("faltas", textFaltasDatos);
             SelectFloatParaTextboxSQL("totalhoras", textHorasDatos);
+            SelectStringParaTextboxSQL("proyecto", textProyectoDatos);
+            SelectBooleanParaTextboxSQL();
         } catch (SQLException ex) {
             Logger.getLogger(AsistenciasGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -746,6 +748,38 @@ public class AsistenciasGUI extends javax.swing.JFrame {
              // get the number of rows from the result set
             if(rs.next()){
                 textfield.setText(String.valueOf(rs.getFloat(1)));
+            }   
+        }finally {
+            rs.close();
+            stmt.close();
+        }
+    }
+    
+    private void SelectStringParaTextboxSQL(String columna, JTextField textfield) throws SQLException {
+        Statement stmt = null;
+        ResultSet rs = null;
+        try {
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery("SELECT " + columna + " FROM asistenciasrobot.Alumnos WHERE name = '" + (String)comboDatosAlumnos.getSelectedItem() + "'");
+             // get the number of rows from the result set
+            if(rs.next()){
+                textfield.setText(rs.getString(1));
+            }   
+        }finally {
+            rs.close();
+            stmt.close();
+        }
+    }
+    
+    private void SelectBooleanParaTextboxSQL() throws SQLException {
+        Statement stmt = null;
+        ResultSet rs = null;
+        try {
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery("SELECT becariorobotica FROM asistenciasrobot.Alumnos WHERE name = '" + (String)comboDatosAlumnos.getSelectedItem() + "'");
+             // get the number of rows from the result set
+            if(rs.next()){
+                checkBecarioDatos.setSelected(rs.getBoolean(1));
             }   
         }finally {
             rs.close();
