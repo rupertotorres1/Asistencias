@@ -63,6 +63,7 @@ public class AsistenciasGUI extends javax.swing.JFrame {
         jComboBoxAlumnos = new javax.swing.JComboBox();
         jLabel4 = new javax.swing.JLabel();
         btnEliminarAlumno = new javax.swing.JButton();
+        btnAgregarBecario = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jTextField6 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -152,8 +153,8 @@ public class AsistenciasGUI extends javax.swing.JFrame {
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(136, 136, 136)
                 .addComponent(btnTomarLista, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
-                .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
+                .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -225,6 +226,13 @@ public class AsistenciasGUI extends javax.swing.JFrame {
             }
         });
 
+        btnAgregarBecario.setText("Agregar Becario");
+        btnAgregarBecario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarBecarioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -237,11 +245,15 @@ public class AsistenciasGUI extends javax.swing.JFrame {
                         .addGap(135, 135, 135))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBoxAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnEliminarAlumno)
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addGap(87, 87, 87)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(jPanel5Layout.createSequentialGroup()
+                                    .addComponent(btnEliminarAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnAgregarBecario))
+                                .addComponent(jComboBoxAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -281,10 +293,11 @@ public class AsistenciasGUI extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(checkBecarioSi)
-                    .addComponent(btnEliminarAlumno))
+                    .addComponent(btnEliminarAlumno)
+                    .addComponent(btnAgregarBecario))
                 .addGap(29, 29, 29)
                 .addComponent(btnAgregarAlumno)
-                .addContainerGap(102, Short.MAX_VALUE))
+                .addGap(102, 102, 102))
         );
 
         textNombreAlumno.getAccessibleContext().setAccessibleName("textNombreAlumno");
@@ -483,9 +496,7 @@ public class AsistenciasGUI extends javax.swing.JFrame {
                             .addComponent(jLabel12)
                             .addComponent(jLabel11)
                             .addComponent(jLabel10)
-                            .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel9)))
+                            .addComponent(jLabel9))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(textAsistenciasDatos, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
@@ -517,9 +528,9 @@ public class AsistenciasGUI extends javax.swing.JFrame {
                     .addComponent(jLabel11)
                     .addComponent(textFaltasDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(checkBecarioDatos))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(checkBecarioDatos)
+                    .addComponent(jLabel12))
                 .addGap(24, 24, 24)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
@@ -684,6 +695,20 @@ public class AsistenciasGUI extends javax.swing.JFrame {
             Logger.getLogger(AsistenciasGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnDatosAlumnosActionPerformed
+
+    private void btnAgregarBecarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarBecarioActionPerformed
+        String sql = "UPDATE asistenciasrobot.Alumnos SET becariorobotica=true WHERE name=?";
+        try {
+            PreparedStatement ps = AsistenciasGUI.conn.prepareStatement(sql);
+            ps.setString(1, (String)comboDatosAlumnos.getSelectedItem());
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Becario Agregado");
+
+        }
+        catch (Exception e){
+
+        }
+    }//GEN-LAST:event_btnAgregarBecarioActionPerformed
     
     /**private static int countRows(Connection conn, String tableName) throws SQLException {
     // select the number of rows in the table
@@ -825,6 +850,7 @@ public class AsistenciasGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarAlumno;
+    private javax.swing.JButton btnAgregarBecario;
     private javax.swing.JButton btnAgregarProyecto;
     private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnDatosAlumnos;
