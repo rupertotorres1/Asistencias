@@ -582,20 +582,19 @@ public class AsistenciasGUI extends javax.swing.JFrame {
 
     private void btnAgregarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarAlumnoActionPerformed
         // TODO add your handling code here:
-        String sql = "insert into asistenciasrobot.Alumnos (name, totalhoras, totalasistencias, becariorobotica, faltas, proyecto) values (?, 0.0, 0, ?, 0, ?)";
+        String sql = "insert into asistenciasrobot.Alumnos " + 
+        "(name, totalhoras, totalasistencias, becariorobotica, faltas, proyecto) values (?, 0.0, 0, ?, 0, ?)";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, textNombreAlumno.getText());
             ps.setBoolean(2, checkBecarioSi.isSelected());
             ps.setString(3, "");
             ps.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Agregado");
+            JOptionPane.showMessageDialog(null, "Agregado");           
+        }
+        catch (Exception e){   
             
         }
-        catch (Exception e){
-            
-        }
-        //jComboBoxAlumnos.addItem(textNombreAlumno.getText());
         textNombreAlumno.setText("");
         jComboBoxAlumnos.removeAllItems();
         comboDatosAlumnos.removeAllItems();
@@ -651,7 +650,13 @@ public class AsistenciasGUI extends javax.swing.JFrame {
         catch (Exception e){
             
         }
-        jComboBoxProyectos.removeItem(jComboBoxProyectos.getSelectedItem());
+        //jComboBoxProyectos.removeItem(jComboBoxProyectos.getSelectedItem());
+        jComboBoxProyectos.removeAllItems();
+        try {
+            SelectNameFromSQL("asistenciasrobot.Proyectos", jComboBoxProyectos);
+        } catch (SQLException ex) {
+            Logger.getLogger(AsistenciasGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnTerminarProyectoActionPerformed
 
     private void textNombreProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNombreProyectoActionPerformed
@@ -666,12 +671,16 @@ public class AsistenciasGUI extends javax.swing.JFrame {
             ps.setString(1, textNombreProyecto.getText());
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Agregado");
-            
         }
         catch (Exception e){
             
         }
-        jComboBoxProyectos.addItem(textNombreProyecto.getText());
+        jComboBoxProyectos.removeAllItems();
+        try {
+            SelectNameFromSQL("asistenciasrobot.Proyectos", jComboBoxProyectos);
+        } catch (SQLException ex) {
+            Logger.getLogger(AsistenciasGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
         textNombreProyecto.setText("");
     }//GEN-LAST:event_btnAgregarProyectoActionPerformed
 
@@ -710,37 +719,15 @@ public class AsistenciasGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAgregarBecarioActionPerformed
     
-    /**private static int countRows(Connection conn, String tableName) throws SQLException {
-    // select the number of rows in the table
-        Statement stmt = null;
-        ResultSet rs = null;
-        int rowCount = -1;
-        try {
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery("SELECT COUNT(*) FROM " + tableName);
-             // get the number of rows from the result set
-            rs.next();
-            rowCount = rs.getInt(1);
-        }finally {
-            rs.close();
-            stmt.close();
-        }
-        return rowCount;
-    }
-    **/
-    
     static void SelectNameFromSQL(String tableName, JComboBox combobox) throws SQLException {
-    // select name from a table
         Statement stmt = null;
         ResultSet rs = null;
         try {
             stmt = conn.createStatement();
             rs = stmt.executeQuery("SELECT name FROM " + tableName + " ORDER BY name ASC");
-             // get the number of rows from the result set
             while(rs.next()){
                 combobox.addItem(rs.getString(1));
-            }
-            
+            } 
         }finally {
             rs.close();
             stmt.close();
