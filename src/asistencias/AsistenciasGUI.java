@@ -5,6 +5,7 @@
  */
 package asistencias;
 
+import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,8 +28,9 @@ public class AsistenciasGUI extends javax.swing.JFrame {
     public AsistenciasGUI() {
         initComponents();
         try {
-            selectNameFromSQL(conn, "asistenciasrobot.Alumnos", jComboBoxAlumnos);
-            selectNameFromSQL(conn, "asistenciasrobot.Proyectos", jComboBoxProyectos);
+            selectNameFromSQL("asistenciasrobot.Alumnos", jComboBoxAlumnos);
+            selectNameFromSQL("asistenciasrobot.Alumnos", comboDatosAlumnos);
+            selectNameFromSQL("asistenciasrobot.Proyectos", jComboBoxProyectos);
         } catch (SQLException ex) {
             Logger.getLogger(AsistenciasGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -71,6 +73,18 @@ public class AsistenciasGUI extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jTextField7 = new javax.swing.JTextField();
+        comboDatosAlumnos = new javax.swing.JComboBox();
+        btnDatosAlumnos = new javax.swing.JButton();
+        textHorasDatos = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        textAsistenciasDatos = new javax.swing.JTextField();
+        textFaltasDatos = new javax.swing.JTextField();
+        checkBecarioDatos = new javax.swing.JCheckBox();
+        textProyectoDatos = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(84, 196, 253));
@@ -350,8 +364,7 @@ public class AsistenciasGUI extends javax.swing.JFrame {
                                 .addGap(130, 130, 130))
                             .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addGap(73, 73, 73)
-                                .addComponent(jLabel8)
-                                .addGap(80, 80, 80))
+                                .addComponent(jLabel8))
                             .addComponent(jComboBoxProyectos, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(130, 130, 130)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -420,21 +433,92 @@ public class AsistenciasGUI extends javax.swing.JFrame {
             }
         });
 
+        btnDatosAlumnos.setFont(new java.awt.Font("Droid Sans", 0, 14)); // NOI18N
+        btnDatosAlumnos.setText("Datos");
+        btnDatosAlumnos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDatosAlumnosActionPerformed(evt);
+            }
+        });
+
+        textHorasDatos.setEditable(false);
+
+        jLabel9.setText("Total de horas");
+
+        jLabel10.setText("Total de asistencias");
+
+        jLabel11.setText("Total de faltas");
+
+        jLabel12.setText("Becario en robotica");
+
+        jLabel13.setText("Proyecto");
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(188, 188, 188)
-                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(188, 188, 188)
+                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(275, 275, 275)
+                        .addComponent(comboDatosAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(428, 428, 428)
+                        .addComponent(btnDatosAlumnos)))
                 .addContainerGap(188, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel13)
+                    .addComponent(jLabel12)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel9))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(textHorasDatos, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                    .addComponent(textAsistenciasDatos)
+                    .addComponent(textFaltasDatos)
+                    .addComponent(textProyectoDatos)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(checkBecarioDatos)))
+                .addGap(381, 381, 381))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(47, 47, 47)
-                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(418, Short.MAX_VALUE))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(46, 46, 46)
+                        .addComponent(comboDatosAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnDatosAlumnos)
+                        .addGap(42, 42, 42)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(textHorasDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9))
+                        .addGap(33, 33, 33)
+                        .addComponent(jLabel10))
+                    .addComponent(textAsistenciasDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(textFaltasDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(checkBecarioDatos))
+                .addGap(24, 24, 24)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(textProyectoDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Datos", jPanel7);
@@ -494,8 +578,16 @@ public class AsistenciasGUI extends javax.swing.JFrame {
         catch (Exception e){
             
         }
-        jComboBoxAlumnos.addItem(textNombreAlumno.getText());
+        //jComboBoxAlumnos.addItem(textNombreAlumno.getText());
         textNombreAlumno.setText("");
+        jComboBoxAlumnos.removeAllItems();
+        comboDatosAlumnos.removeAllItems();
+        try {
+            selectNameFromSQL("asistenciasrobot.Alumnos", jComboBoxAlumnos);
+            selectNameFromSQL("asistenciasrobot.Alumnos", comboDatosAlumnos);
+        } catch (SQLException ex) {
+            Logger.getLogger(AsistenciasGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnAgregarAlumnoActionPerformed
 
     private void jComboBoxAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxAlumnosActionPerformed
@@ -511,10 +603,18 @@ public class AsistenciasGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Eliminado");
             
         }
-        catch (Exception e){
+        catch (SQLException | HeadlessException e){
             
         }
-        jComboBoxAlumnos.removeItem(jComboBoxAlumnos.getSelectedItem());
+        //jComboBoxAlumnos.removeItem(jComboBoxAlumnos.getSelectedItem());
+        jComboBoxAlumnos.removeAllItems();
+        comboDatosAlumnos.removeAllItems();
+        try {
+            selectNameFromSQL("asistenciasrobot.Alumnos", jComboBoxAlumnos);
+            selectNameFromSQL("asistenciasrobot.Alumnos", comboDatosAlumnos);
+        } catch (SQLException ex) {
+            Logger.getLogger(AsistenciasGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnEliminarAlumnoActionPerformed
 
     private void jComboBoxProyectosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxProyectosActionPerformed
@@ -566,6 +666,10 @@ public class AsistenciasGUI extends javax.swing.JFrame {
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         System.exit(0);
     }//GEN-LAST:event_btnCerrarActionPerformed
+
+    private void btnDatosAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatosAlumnosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDatosAlumnosActionPerformed
     
     /**private static int countRows(Connection conn, String tableName) throws SQLException {
     // select the number of rows in the table
@@ -586,7 +690,7 @@ public class AsistenciasGUI extends javax.swing.JFrame {
     }
     **/
     
-    static void selectNameFromSQL(Connection conn, String tableName, JComboBox combobox) throws SQLException {
+    static void selectNameFromSQL(String tableName, JComboBox combobox) throws SQLException {
     // select name from a table
         Statement stmt = null;
         ResultSet rs = null;
@@ -603,6 +707,8 @@ public class AsistenciasGUI extends javax.swing.JFrame {
             stmt.close();
         }
     }
+    
+    
      
      
     /**
@@ -644,13 +750,20 @@ public class AsistenciasGUI extends javax.swing.JFrame {
     private javax.swing.JButton btnAgregarAlumno;
     private javax.swing.JButton btnAgregarProyecto;
     private javax.swing.JButton btnCerrar;
+    private javax.swing.JButton btnDatosAlumnos;
     private javax.swing.JButton btnEliminarAlumno;
     private javax.swing.JButton btnTerminarProyecto;
     private javax.swing.JButton btnTomarLista;
+    private javax.swing.JCheckBox checkBecarioDatos;
     private javax.swing.JCheckBox checkBecarioSi;
+    private javax.swing.JComboBox comboDatosAlumnos;
     private javax.swing.JComboBox jComboBoxAlumnos;
     private javax.swing.JComboBox jComboBoxProyectos;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -658,6 +771,7 @@ public class AsistenciasGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
@@ -667,7 +781,11 @@ public class AsistenciasGUI extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField textAsistenciasDatos;
+    private javax.swing.JTextField textFaltasDatos;
+    private javax.swing.JTextField textHorasDatos;
     private javax.swing.JTextField textNombreAlumno;
     private javax.swing.JTextField textNombreProyecto;
+    private javax.swing.JTextField textProyectoDatos;
     // End of variables declaration//GEN-END:variables
 }

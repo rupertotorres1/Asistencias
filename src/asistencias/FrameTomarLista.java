@@ -27,8 +27,8 @@ public class FrameTomarLista extends javax.swing.JFrame {
     public FrameTomarLista() {
         initComponents();
         try {
-            AsistenciasGUI.selectNameFromSQL(AsistenciasGUI.conn, "asistenciasrobot.Alumnos", comboListaAlumnos);
-            AsistenciasGUI.selectNameFromSQL(AsistenciasGUI.conn, "asistenciasrobot.Proyectos", comboListaProyectos);
+            AsistenciasGUI.selectNameFromSQL("asistenciasrobot.Alumnos", comboListaAlumnos);
+            AsistenciasGUI.selectNameFromSQL("asistenciasrobot.Proyectos", comboListaProyectos);
         } catch (SQLException ex) {
             Logger.getLogger(AsistenciasGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
