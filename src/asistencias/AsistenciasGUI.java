@@ -582,27 +582,32 @@ public class AsistenciasGUI extends javax.swing.JFrame {
 
     private void btnAgregarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarAlumnoActionPerformed
         // TODO add your handling code here:
-        String sql = "insert into asistenciasrobot.Alumnos " + 
-        "(name, totalhoras, totalasistencias, becariorobotica, faltas, proyecto) values (?, 0.0, 0, ?, 0, ?)";
-        try {
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, textNombreAlumno.getText());
-            ps.setBoolean(2, checkBecarioSi.isSelected());
-            ps.setString(3, "");
-            ps.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Agregado");           
+        if(textNombreAlumno.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Insertar Nombre");
         }
-        catch (Exception e){   
-            
-        }
-        textNombreAlumno.setText("");
-        jComboBoxAlumnos.removeAllItems();
-        comboDatosAlumnos.removeAllItems();
-        try {
-            SelectNameFromSQL("asistenciasrobot.Alumnos", jComboBoxAlumnos);
-            SelectNameFromSQL("asistenciasrobot.Alumnos", comboDatosAlumnos);
-        } catch (SQLException ex) {
-            Logger.getLogger(AsistenciasGUI.class.getName()).log(Level.SEVERE, null, ex);
+        else {
+            String sql = "insert into asistenciasrobot.Alumnos " + 
+            "(name, totalhoras, totalasistencias, becariorobotica, faltas, proyecto) values (?, 0.0, 0, ?, 0, ?)";
+            try {
+                PreparedStatement ps = conn.prepareStatement(sql);
+                ps.setString(1, textNombreAlumno.getText());
+                ps.setBoolean(2, checkBecarioSi.isSelected());
+                ps.setString(3, "");
+                ps.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Agregado");           
+            }
+            catch (Exception e){   
+
+            }
+            textNombreAlumno.setText("");
+            jComboBoxAlumnos.removeAllItems();
+            comboDatosAlumnos.removeAllItems();
+            try {
+                SelectNameFromSQL("asistenciasrobot.Alumnos", jComboBoxAlumnos);
+                SelectNameFromSQL("asistenciasrobot.Alumnos", comboDatosAlumnos);
+            } catch (SQLException ex) {
+                Logger.getLogger(AsistenciasGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_btnAgregarAlumnoActionPerformed
 
@@ -616,8 +621,7 @@ public class AsistenciasGUI extends javax.swing.JFrame {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, (String)jComboBoxAlumnos.getSelectedItem());
             ps.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Eliminado");
-            
+            JOptionPane.showMessageDialog(null, "Eliminado");         
         }
         catch (SQLException | HeadlessException e){
             
@@ -665,23 +669,28 @@ public class AsistenciasGUI extends javax.swing.JFrame {
 
     private void btnAgregarProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProyectoActionPerformed
         // TODO add your handling code here:
-        String sql = "insert into asistenciasrobot.Proyectos (name) values (?)";
-        try {
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, textNombreProyecto.getText());
-            ps.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Agregado");
+        if(textNombreProyecto.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Insertar Nombre");
         }
-        catch (Exception e){
-            
+        else{
+            String sql = "insert into asistenciasrobot.Proyectos (name) values (?)";
+            try {
+                PreparedStatement ps = conn.prepareStatement(sql);
+                ps.setString(1, textNombreProyecto.getText());
+                ps.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Agregado");
+            }
+            catch (Exception e){
+
+            }
+            jComboBoxProyectos.removeAllItems();
+            try {
+                SelectNameFromSQL("asistenciasrobot.Proyectos", jComboBoxProyectos);
+            } catch (SQLException ex) {
+                Logger.getLogger(AsistenciasGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            textNombreProyecto.setText("");
         }
-        jComboBoxProyectos.removeAllItems();
-        try {
-            SelectNameFromSQL("asistenciasrobot.Proyectos", jComboBoxProyectos);
-        } catch (SQLException ex) {
-            Logger.getLogger(AsistenciasGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        textNombreProyecto.setText("");
     }//GEN-LAST:event_btnAgregarProyectoActionPerformed
 
     private void btnTomarListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTomarListaActionPerformed
