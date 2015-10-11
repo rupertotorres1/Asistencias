@@ -52,6 +52,7 @@ public class AsistenciasGUI extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         btnTomarLista = new javax.swing.JButton();
         btnCerrar = new javax.swing.JButton();
+        btnNuevoSemestre = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jTextField5 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -133,6 +134,15 @@ public class AsistenciasGUI extends javax.swing.JFrame {
             }
         });
 
+        btnNuevoSemestre.setBackground(new java.awt.Color(0, 255, 214));
+        btnNuevoSemestre.setFont(new java.awt.Font("Droid Sans", 0, 14)); // NOI18N
+        btnNuevoSemestre.setText("Nuevo Semestre");
+        btnNuevoSemestre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoSemestreActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -146,7 +156,10 @@ public class AsistenciasGUI extends javax.swing.JFrame {
                         .addGap(273, 273, 273)
                         .addComponent(btnTomarLista, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(408, 408, 408)
+                        .addGap(364, 364, 364)
+                        .addComponent(btnNuevoSemestre, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(409, 409, 409)
                         .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(189, Short.MAX_VALUE))
         );
@@ -157,7 +170,9 @@ public class AsistenciasGUI extends javax.swing.JFrame {
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(136, 136, 136)
                 .addComponent(btnTomarLista, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
+                .addGap(60, 60, 60)
+                .addComponent(btnNuevoSemestre)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                 .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -304,7 +319,7 @@ public class AsistenciasGUI extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textNombreAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(checkBecarioSi))
@@ -756,6 +771,21 @@ public class AsistenciasGUI extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_btnAgregarBecarioActionPerformed
+
+    private void btnNuevoSemestreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoSemestreActionPerformed
+        int option = JOptionPane.showConfirmDialog(null, "¿Seguro?", "Nuevo Semestre", JOptionPane.YES_NO_OPTION);
+        if (option==0){
+            String sql = "UPDATE asistenciasrobot.Alumnos SET semestre=semestre+1";
+            try {
+                PreparedStatement ps = conn.prepareStatement(sql);
+                ps.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Nuevo Semestre");         
+            }
+            catch (SQLException | HeadlessException e){
+
+            }
+        }
+    }//GEN-LAST:event_btnNuevoSemestreActionPerformed
     
     static void SelectNameFromSQL(String tableName, JComboBox combobox) throws SQLException {
         Statement stmt = null;
@@ -880,6 +910,7 @@ public class AsistenciasGUI extends javax.swing.JFrame {
     private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnDatosAlumnos;
     private javax.swing.JButton btnEliminarAlumno;
+    private javax.swing.JButton btnNuevoSemestre;
     private javax.swing.JButton btnTerminarProyecto;
     private javax.swing.JButton btnTomarLista;
     private javax.swing.JCheckBox checkBecarioDatos;
