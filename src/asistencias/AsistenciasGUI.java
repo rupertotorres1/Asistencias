@@ -319,7 +319,7 @@ public class AsistenciasGUI extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textNombreAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(checkBecarioSi))
@@ -775,9 +775,25 @@ public class AsistenciasGUI extends javax.swing.JFrame {
     private void btnNuevoSemestreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoSemestreActionPerformed
         int option = JOptionPane.showConfirmDialog(null, "¿Seguro?", "Nuevo Semestre", JOptionPane.YES_NO_OPTION);
         if (option==0){
-            String sql = "UPDATE asistenciasrobot.Alumnos SET semestre=semestre+1";
+            String sql = "DELETE FROM asistenciasrobot.Alumnos WHERE semestre=6";
             try {
                 PreparedStatement ps = conn.prepareStatement(sql);
+                ps.executeUpdate();         
+            }
+            catch (SQLException | HeadlessException e){
+
+            }
+            jComboBoxAlumnos.removeAllItems();
+            comboDatosAlumnos.removeAllItems();
+            try {
+                SelectNameFromSQL("asistenciasrobot.Alumnos", jComboBoxAlumnos);
+                SelectNameFromSQL("asistenciasrobot.Alumnos", comboDatosAlumnos);
+            } catch (SQLException ex) {
+                Logger.getLogger(AsistenciasGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            String sql2 = "UPDATE asistenciasrobot.Alumnos SET semestre=semestre+1";
+            try {
+                PreparedStatement ps = conn.prepareStatement(sql2);
                 ps.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Nuevo Semestre");         
             }
