@@ -187,36 +187,42 @@ public class FrameTomarLista extends javax.swing.JFrame {
     }//GEN-LAST:event_btnListaRegresarActionPerformed
 
     private void btnListaFaltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaFaltaActionPerformed
+        if ((String)comboListaAlumnos.getSelectedItem()==null){
+            JOptionPane.showMessageDialog(null, "No hay alumno seleccionado");
+        }
+        else {
         String sql = "UPDATE asistenciasrobot.Alumnos SET faltas=faltas+1 WHERE name=?";
-        try {
-            PreparedStatement ps = AsistenciasGUI.conn.prepareStatement(sql);
-            ps.setString(1, (String)comboListaAlumnos.getSelectedItem());
-            ps.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Falta");
-            
+            try {
+                PreparedStatement ps = AsistenciasGUI.conn.prepareStatement(sql);
+                ps.setString(1, (String)comboListaAlumnos.getSelectedItem());
+                ps.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Falta");
+                comboListaAlumnos.removeItem(comboListaAlumnos.getSelectedItem());
+            }
+            catch (SQLException | HeadlessException e){
+            }
         }
-        catch (Exception e){
-            
-        }
-        comboListaAlumnos.removeItem(comboListaAlumnos.getSelectedItem());
     }//GEN-LAST:event_btnListaFaltaActionPerformed
 
     private void btnListaAsistenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaAsistenciaActionPerformed
+        if (((String)comboListaAlumnos.getSelectedItem()==null)||((String)comboListaProyectos.getSelectedItem()==null)){
+            JOptionPane.showMessageDialog(null, "No hay alumno y/o proyecto seleccionado");
+        }
+        else{
         String sql = "UPDATE asistenciasrobot.Alumnos SET" +
         " totalhoras=totalhoras + ?, totalasistencias=totalasistencias+1, proyecto= ? WHERE name=?";
-        try {
-            PreparedStatement ps = AsistenciasGUI.conn.prepareStatement(sql);
-            ps.setFloat(1, Float.valueOf((String)comboListaHoras.getSelectedItem()));
-            ps.setString(2, (String)comboListaProyectos.getSelectedItem());
-            ps.setString(3, (String)comboListaAlumnos.getSelectedItem());
-            ps.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Asistencia");
-            
+            try {
+                PreparedStatement ps = AsistenciasGUI.conn.prepareStatement(sql);
+                ps.setFloat(1, Float.valueOf((String)comboListaHoras.getSelectedItem()));
+                ps.setString(2, (String)comboListaProyectos.getSelectedItem());
+                ps.setString(3, (String)comboListaAlumnos.getSelectedItem());
+                ps.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Asistencia");
+                comboListaAlumnos.removeItem(comboListaAlumnos.getSelectedItem());
+            }
+            catch (SQLException | HeadlessException e){
+            }
         }
-        catch (SQLException | HeadlessException e){
-            
-        }
-        comboListaAlumnos.removeItem(comboListaAlumnos.getSelectedItem());
     }//GEN-LAST:event_btnListaAsistenciaActionPerformed
 
     /**
@@ -254,24 +260,6 @@ public class FrameTomarLista extends javax.swing.JFrame {
         });
     }
     
-    /**int returnFaltasSQL() throws SQLException {
-        Statement stmt = null;
-        ResultSet rs = null;
-        int faltasSQL=0;
-        try {
-            stmt = AsistenciasGUI.conn.createStatement();
-            rs = stmt.executeQuery("SELECT faltas FROM asistenciasrobot.Alumnos WHERE name= '" + comboListaAlumnos.getSelectedItem() + "'");
-             // 
-            if(rs.next()){
-                faltasSQL= rs.getInt("faltas");
-            }
-        return faltasSQL;   
-        }finally {
-            rs.close();
-            stmt.close();
-        }
-    }
-    **/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnListaAsistencia;

@@ -67,6 +67,7 @@ public class AsistenciasGUI extends javax.swing.JFrame {
         btnAgregarBecario = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
         comboSemestreAlumnos = new javax.swing.JComboBox();
+        btnCerrar1 = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jTextField6 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -77,6 +78,7 @@ public class AsistenciasGUI extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         btnAgregarProyecto = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
+        btnCerrar2 = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jTextField7 = new javax.swing.JTextField();
         comboDatosAlumnos = new javax.swing.JComboBox();
@@ -93,6 +95,7 @@ public class AsistenciasGUI extends javax.swing.JFrame {
         textProyectoDatos = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         textSemestreDatos = new javax.swing.JTextField();
+        btnCerrar3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(84, 196, 253));
@@ -172,9 +175,9 @@ public class AsistenciasGUI extends javax.swing.JFrame {
                 .addComponent(btnTomarLista, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(60, 60, 60)
                 .addComponent(btnNuevoSemestre)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(18, 18, 18))
         );
 
         jTabbedPane2.addTab("Tomar Lista", null, jPanel4, "");
@@ -257,6 +260,14 @@ public class AsistenciasGUI extends javax.swing.JFrame {
 
         comboSemestreAlumnos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6" }));
 
+        btnCerrar1.setFont(new java.awt.Font("Droid Sans", 0, 18)); // NOI18N
+        btnCerrar1.setText("Cerrar");
+        btnCerrar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrar1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -301,8 +312,13 @@ public class AsistenciasGUI extends javax.swing.JFrame {
                                         .addComponent(comboSemestreAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addGap(28, 28, 28))
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(187, 187, 187)
-                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(187, 187, 187)
+                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(407, 407, 407)
+                        .addComponent(btnCerrar1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
@@ -331,7 +347,9 @@ public class AsistenciasGUI extends javax.swing.JFrame {
                     .addComponent(comboSemestreAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addComponent(btnAgregarAlumno)
-                .addGap(102, 102, 102))
+                .addGap(53, 53, 53)
+                .addComponent(btnCerrar1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         textNombreAlumno.getAccessibleContext().setAccessibleName("textNombreAlumno");
@@ -394,6 +412,14 @@ public class AsistenciasGUI extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Droid Sans", 0, 18)); // NOI18N
         jLabel8.setText("Terminar Proyecto");
 
+        btnCerrar2.setFont(new java.awt.Font("Droid Sans", 0, 18)); // NOI18N
+        btnCerrar2.setText("Cerrar");
+        btnCerrar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrar2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -419,7 +445,10 @@ public class AsistenciasGUI extends javax.swing.JFrame {
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(186, 186, 186)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(408, 408, 408)
+                        .addComponent(btnCerrar2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(190, Short.MAX_VALUE))
             .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel6Layout.createSequentialGroup()
@@ -445,7 +474,9 @@ public class AsistenciasGUI extends javax.swing.JFrame {
                         .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 8, Short.MAX_VALUE)
                         .addGap(106, 106, 106)
                         .addComponent(btnAgregarProyecto)
-                        .addGap(246, 246, 246))
+                        .addGap(127, 127, 127)
+                        .addComponent(btnCerrar2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(93, 93, 93))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -510,6 +541,14 @@ public class AsistenciasGUI extends javax.swing.JFrame {
 
         jLabel15.setText("Semestre");
 
+        btnCerrar3.setFont(new java.awt.Font("Droid Sans", 0, 18)); // NOI18N
+        btnCerrar3.setText("Cerrar");
+        btnCerrar3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrar3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -541,7 +580,10 @@ public class AsistenciasGUI extends javax.swing.JFrame {
                             .addComponent(textProyectoDatos)
                             .addComponent(textHorasDatos)
                             .addComponent(checkBecarioDatos)
-                            .addComponent(textSemestreDatos))))
+                            .addComponent(textSemestreDatos)))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(403, 403, 403)
+                        .addComponent(btnCerrar3, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(188, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
@@ -577,7 +619,9 @@ public class AsistenciasGUI extends javax.swing.JFrame {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
                     .addComponent(textSemestreDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addComponent(btnCerrar3, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
 
         jTabbedPane2.addTab("Datos", jPanel7);
@@ -637,14 +681,15 @@ public class AsistenciasGUI extends javax.swing.JFrame {
                 ps.setString(3, "");
                 ps.setInt(4, Integer.parseInt((String)comboSemestreAlumnos.getSelectedItem()));
                 ps.executeUpdate();
-                JOptionPane.showMessageDialog(null, "Agregado");           
+                JOptionPane.showMessageDialog(null, "Agregado");   
+                textNombreAlumno.setText("");
+                checkBecarioSi.setSelected(false);
+                comboSemestreAlumnos.setSelectedIndex(0);
+                jComboBoxAlumnos.removeAllItems();
+                comboDatosAlumnos.removeAllItems();
             }
             catch (SQLException | HeadlessException e){   
-
             }
-            textNombreAlumno.setText("");
-            jComboBoxAlumnos.removeAllItems();
-            comboDatosAlumnos.removeAllItems();
             try {
                 SelectNameFromSQL("asistenciasrobot.Alumnos", jComboBoxAlumnos);
                 SelectNameFromSQL("asistenciasrobot.Alumnos", comboDatosAlumnos);
@@ -659,24 +704,27 @@ public class AsistenciasGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxAlumnosActionPerformed
 
     private void btnEliminarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarAlumnoActionPerformed
-        String sql = "DELETE FROM asistenciasrobot.Alumnos WHERE name IS NULL OR name=?";
-        try {
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, (String)jComboBoxAlumnos.getSelectedItem());
-            ps.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Eliminado");         
-        }
-        catch (SQLException | HeadlessException e){
-            
-        }
-        //jComboBoxAlumnos.removeItem(jComboBoxAlumnos.getSelectedItem());
-        jComboBoxAlumnos.removeAllItems();
-        comboDatosAlumnos.removeAllItems();
-        try {
-            SelectNameFromSQL("asistenciasrobot.Alumnos", jComboBoxAlumnos);
-            SelectNameFromSQL("asistenciasrobot.Alumnos", comboDatosAlumnos);
-        } catch (SQLException ex) {
-            Logger.getLogger(AsistenciasGUI.class.getName()).log(Level.SEVERE, null, ex);
+        if ((String)jComboBoxAlumnos.getSelectedItem()==null){
+            JOptionPane.showMessageDialog(null, "No hay alumno seleccionado");
+        }    
+        else{
+            String sql = "DELETE FROM asistenciasrobot.Alumnos WHERE name IS NULL OR name=?";
+            try {
+                PreparedStatement ps = conn.prepareStatement(sql);
+                ps.setString(1, (String)jComboBoxAlumnos.getSelectedItem());
+                ps.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Eliminado"); 
+                jComboBoxAlumnos.removeAllItems();
+                comboDatosAlumnos.removeAllItems();
+            }
+            catch (SQLException | HeadlessException e){
+            }
+            try {
+                SelectNameFromSQL("asistenciasrobot.Alumnos", jComboBoxAlumnos);
+                SelectNameFromSQL("asistenciasrobot.Alumnos", comboDatosAlumnos);
+            } catch (SQLException ex) {
+                Logger.getLogger(AsistenciasGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_btnEliminarAlumnoActionPerformed
 
@@ -692,13 +740,10 @@ public class AsistenciasGUI extends javax.swing.JFrame {
             ps.setString(1, (String)jComboBoxProyectos.getSelectedItem());
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Terminado");
-            
+            jComboBoxProyectos.removeAllItems();          
         }
-        catch (Exception e){
-            
+        catch (SQLException | HeadlessException e){          
         }
-        //jComboBoxProyectos.removeItem(jComboBoxProyectos.getSelectedItem());
-        jComboBoxProyectos.removeAllItems();
         try {
             SelectNameFromSQL("asistenciasrobot.Proyectos", jComboBoxProyectos);
         } catch (SQLException ex) {
@@ -722,11 +767,10 @@ public class AsistenciasGUI extends javax.swing.JFrame {
                 ps.setString(1, textNombreProyecto.getText());
                 ps.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Agregado");
+                jComboBoxProyectos.removeAllItems();
             }
-            catch (Exception e){
-
+            catch (SQLException | HeadlessException e){
             }
-            jComboBoxProyectos.removeAllItems();
             try {
                 SelectNameFromSQL("asistenciasrobot.Proyectos", jComboBoxProyectos);
             } catch (SQLException ex) {
@@ -759,16 +803,42 @@ public class AsistenciasGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDatosAlumnosActionPerformed
 
     private void btnAgregarBecarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarBecarioActionPerformed
-        String sql = "UPDATE asistenciasrobot.Alumnos SET becariorobotica=true WHERE name=?";
-        try {
-            PreparedStatement ps = AsistenciasGUI.conn.prepareStatement(sql);
-            ps.setString(1, (String)comboDatosAlumnos.getSelectedItem());
-            ps.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Becario Agregado");
-
-        }
-        catch (Exception e){
-
+        if ((String)jComboBoxAlumnos.getSelectedItem()==null){
+            JOptionPane.showMessageDialog(null, "No hay alumno seleccionado");
+        } 
+        else{
+            Statement stmt = null;
+            ResultSet rs = null;
+            try {
+                stmt = conn.createStatement();
+                rs = stmt.executeQuery("SELECT becariorobotica FROM asistenciasrobot.Alumnos WHERE name = '" + (String)jComboBoxAlumnos.getSelectedItem() + "'");
+                 // get the number of rows from the result set
+                if(rs.next()){
+                    if(rs.getBoolean(1)==true) {
+                        JOptionPane.showMessageDialog(null, "Ya cuenta con becario");
+                    }
+                    else{
+                        String sql = "UPDATE asistenciasrobot.Alumnos SET becariorobotica=true WHERE name=?";
+                        try {
+                            PreparedStatement ps = AsistenciasGUI.conn.prepareStatement(sql);
+                            ps.setString(1, (String)jComboBoxAlumnos.getSelectedItem());
+                            ps.executeUpdate();
+                            JOptionPane.showMessageDialog(null, "Becario Agregado");
+                        }
+                        catch (SQLException | HeadlessException e){
+                        }
+                    }
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(AsistenciasGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }finally {
+                try {
+                    rs.close();
+                    stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(AsistenciasGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         }
     }//GEN-LAST:event_btnAgregarBecarioActionPerformed
 
@@ -778,13 +848,12 @@ public class AsistenciasGUI extends javax.swing.JFrame {
             String sql = "DELETE FROM asistenciasrobot.Alumnos WHERE semestre=6";
             try {
                 PreparedStatement ps = conn.prepareStatement(sql);
-                ps.executeUpdate();         
+                ps.executeUpdate();   
+                jComboBoxAlumnos.removeAllItems();
+                comboDatosAlumnos.removeAllItems();
             }
             catch (SQLException | HeadlessException e){
-
             }
-            jComboBoxAlumnos.removeAllItems();
-            comboDatosAlumnos.removeAllItems();
             try {
                 SelectNameFromSQL("asistenciasrobot.Alumnos", jComboBoxAlumnos);
                 SelectNameFromSQL("asistenciasrobot.Alumnos", comboDatosAlumnos);
@@ -802,6 +871,18 @@ public class AsistenciasGUI extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnNuevoSemestreActionPerformed
+
+    private void btnCerrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrar1ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btnCerrar1ActionPerformed
+
+    private void btnCerrar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrar2ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btnCerrar2ActionPerformed
+
+    private void btnCerrar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrar3ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btnCerrar3ActionPerformed
     
     static void SelectNameFromSQL(String tableName, JComboBox combobox) throws SQLException {
         Statement stmt = null;
@@ -924,6 +1005,9 @@ public class AsistenciasGUI extends javax.swing.JFrame {
     private javax.swing.JButton btnAgregarBecario;
     private javax.swing.JButton btnAgregarProyecto;
     private javax.swing.JButton btnCerrar;
+    private javax.swing.JButton btnCerrar1;
+    private javax.swing.JButton btnCerrar2;
+    private javax.swing.JButton btnCerrar3;
     private javax.swing.JButton btnDatosAlumnos;
     private javax.swing.JButton btnEliminarAlumno;
     private javax.swing.JButton btnNuevoSemestre;
