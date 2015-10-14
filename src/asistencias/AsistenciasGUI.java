@@ -878,11 +878,26 @@ public class AsistenciasGUI extends javax.swing.JFrame {
             String sql2 = "UPDATE asistenciasrobot.Alumnos SET semestre=semestre+1";
             try {
                 PreparedStatement ps = conn.prepareStatement(sql2);
+                ps.executeUpdate();         
+            }
+            catch (SQLException | HeadlessException e){
+            }
+            String sql3 = "UPDATE asistenciasrobot.Alumnos SET totalhoras=0, totalasistencias=0, faltas=0, proyecto=''";
+            try {
+                PreparedStatement ps = conn.prepareStatement(sql3);
+                ps.executeUpdate();        
+            }
+            catch (SQLException | HeadlessException e){
+            }
+            String sql4= "DELETE FROM asistenciasrobot.Proyectos";
+            try {
+                PreparedStatement ps = conn.prepareStatement(sql4);
                 ps.executeUpdate();
+                jComboBoxProyectos.removeAllItems();
+                SelectNameFromSQL("asistenciasrobot.Proyectos", jComboBoxProyectos);
                 JOptionPane.showMessageDialog(null, "Nuevo Semestre");         
             }
             catch (SQLException | HeadlessException e){
-
             }
         }
     }//GEN-LAST:event_btnNuevoSemestreActionPerformed
