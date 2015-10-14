@@ -733,21 +733,25 @@ public class AsistenciasGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxProyectosActionPerformed
 
     private void btnTerminarProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTerminarProyectoActionPerformed
-        // TODO add your handling code here:
-        String sql = "DELETE FROM asistenciasrobot.Proyectos WHERE name=?";
-        try {
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, (String)jComboBoxProyectos.getSelectedItem());
-            ps.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Terminado");
-            jComboBoxProyectos.removeAllItems();          
-        }
-        catch (SQLException | HeadlessException e){          
-        }
-        try {
-            SelectNameFromSQL("asistenciasrobot.Proyectos", jComboBoxProyectos);
-        } catch (SQLException ex) {
-            Logger.getLogger(AsistenciasGUI.class.getName()).log(Level.SEVERE, null, ex);
+        if ((String)jComboBoxProyectos.getSelectedItem()==null){
+            JOptionPane.showMessageDialog(null, "No hay proyecto seleccionado");
+        }    
+        else{
+            String sql = "DELETE FROM asistenciasrobot.Proyectos WHERE name=?";
+            try {
+                PreparedStatement ps = conn.prepareStatement(sql);
+                ps.setString(1, (String)jComboBoxProyectos.getSelectedItem());
+                ps.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Terminado");
+                jComboBoxProyectos.removeAllItems();          
+            }
+            catch (SQLException | HeadlessException e){          
+            }
+            try {
+                SelectNameFromSQL("asistenciasrobot.Proyectos", jComboBoxProyectos);
+            } catch (SQLException ex) {
+                Logger.getLogger(AsistenciasGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_btnTerminarProyectoActionPerformed
 
@@ -790,15 +794,26 @@ public class AsistenciasGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void btnDatosAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatosAlumnosActionPerformed
-        try {
-            SelectIntParaTextboxSQL("totalasistencias", textAsistenciasDatos);
-            SelectIntParaTextboxSQL("faltas", textFaltasDatos);
-            SelectIntParaTextboxSQL("semestre", textSemestreDatos);
-            SelectFloatParaTextboxSQL("totalhoras", textHorasDatos);
-            SelectStringParaTextboxSQL("proyecto", textProyectoDatos);
-            SelectBooleanParaTextboxSQL();
-        } catch (SQLException ex) {
-            Logger.getLogger(AsistenciasGUI.class.getName()).log(Level.SEVERE, null, ex);
+        if ((String)comboDatosAlumnos.getSelectedItem()==null){
+            JOptionPane.showMessageDialog(null, "No hay alumno seleccionado");
+            textAsistenciasDatos.setText("");
+            textFaltasDatos.setText("");
+            textSemestreDatos.setText("");
+            textHorasDatos.setText("");
+            textProyectoDatos.setText("");
+            checkBecarioDatos.setSelected(false);
+        }       
+        else{
+            try {
+                SelectIntParaTextboxSQL("totalasistencias", textAsistenciasDatos);
+                SelectIntParaTextboxSQL("faltas", textFaltasDatos);
+                SelectIntParaTextboxSQL("semestre", textSemestreDatos);
+                SelectFloatParaTextboxSQL("totalhoras", textHorasDatos);
+                SelectStringParaTextboxSQL("proyecto", textProyectoDatos);
+                SelectBooleanParaTextboxSQL();
+            } catch (SQLException ex) {
+                Logger.getLogger(AsistenciasGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_btnDatosAlumnosActionPerformed
 
