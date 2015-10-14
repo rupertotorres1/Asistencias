@@ -672,29 +672,49 @@ public class AsistenciasGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Insertar Nombre");
         }
         else {
-            String sql = "insert into asistenciasrobot.Alumnos " + 
-            "(name, totalhoras, totalasistencias, becariorobotica, faltas, proyecto, semestre) values (?, 0.0, 0, ?, 0, ?, ?)";
+            Statement stmt = null;
+            ResultSet rs = null;
             try {
-                PreparedStatement ps = conn.prepareStatement(sql);
-                ps.setString(1, textNombreAlumno.getText());
-                ps.setBoolean(2, checkBecarioSi.isSelected());
-                ps.setString(3, "");
-                ps.setInt(4, Integer.parseInt((String)comboSemestreAlumnos.getSelectedItem()));
-                ps.executeUpdate();
-                JOptionPane.showMessageDialog(null, "Agregado");   
-                textNombreAlumno.setText("");
-                checkBecarioSi.setSelected(false);
-                comboSemestreAlumnos.setSelectedIndex(0);
-                jComboBoxAlumnos.removeAllItems();
-                comboDatosAlumnos.removeAllItems();
-            }
-            catch (SQLException | HeadlessException e){   
-            }
-            try {
-                SelectNameFromSQL("asistenciasrobot.Alumnos", jComboBoxAlumnos);
-                SelectNameFromSQL("asistenciasrobot.Alumnos", comboDatosAlumnos);
-            } catch (SQLException ex) {
+                stmt = conn.createStatement();
+                //rs = stmt.executeQuery("SELECT EXISTS(SELECT 1 FROM asistenciasrobot.Alumnos WHERE name = '" + (String)textNombreAlumno.getText() + "'");
+                rs = stmt.executeQuery("SELECT count(*) as count FROM asistenciasrobot.Alumnos WHERE name = '" + (String)textNombreAlumno.getText() + "'");
+                if(rs.next()){
+                    if(rs.getInt(1)!=0) {
+                        JOptionPane.showMessageDialog(null, "Ya existe el alumno");
+                    }
+                    else{
+                        String sql = "insert into asistenciasrobot.Alumnos " + 
+                        "(name, totalhoras, totalasistencias, becariorobotica, faltas, proyecto, semestre) values (?, 0.0, 0, ?, 0, ?, ?)";
+                        try {
+                            PreparedStatement ps = conn.prepareStatement(sql);
+                            ps.setString(1, textNombreAlumno.getText());
+                            ps.setBoolean(2, checkBecarioSi.isSelected());
+                            ps.setString(3, "");
+                            ps.setInt(4, Integer.parseInt((String)comboSemestreAlumnos.getSelectedItem()));
+                            ps.executeUpdate();
+                            JOptionPane.showMessageDialog(null, "Agregado");   
+                            textNombreAlumno.setText("");
+                            checkBecarioSi.setSelected(false);
+                            comboSemestreAlumnos.setSelectedIndex(0);
+                            jComboBoxAlumnos.removeAllItems();
+                            comboDatosAlumnos.removeAllItems();
+                            SelectNameFromSQL("asistenciasrobot.Alumnos", jComboBoxAlumnos);
+                            SelectNameFromSQL("asistenciasrobot.Alumnos", comboDatosAlumnos);
+                            
+                        }
+                        catch (SQLException | HeadlessException e){   
+                        }
+                    }
+                }
+            }catch (SQLException ex) {
                 Logger.getLogger(AsistenciasGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }finally {
+                try {
+                    rs.close();
+                    stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(AsistenciasGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
     }//GEN-LAST:event_btnAgregarAlumnoActionPerformed
@@ -764,7 +784,7 @@ public class AsistenciasGUI extends javax.swing.JFrame {
         if(textNombreProyecto.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Insertar Nombre");
         }
-        else{
+        /**else{
             String sql = "insert into asistenciasrobot.Proyectos (name) values (?)";
             try {
                 PreparedStatement ps = conn.prepareStatement(sql);
@@ -781,6 +801,51 @@ public class AsistenciasGUI extends javax.swing.JFrame {
                 Logger.getLogger(AsistenciasGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
             textNombreProyecto.setText("");
+        }
+        **/ 
+        
+        
+     
+        else {
+            Statement stmt = null;
+            ResultSet rs = null;
+            try {
+                stmt = conn.createStatement();
+                //rs = stmt.executeQuery("SELECT EXISTS(SELECT 1 FROM asistenciasrobot.Alumnos WHERE name = '" + (String)textNombreAlumno.getText() + "'");
+                rs = stmt.executeQuery("SELECT count(*) as count FROM asistenciasrobot.Proyectos WHERE name = '" + (String)textNombreProyecto.getText() + "'");
+                if(rs.next()){
+                    if(rs.getInt(1)!=0) {
+                        JOptionPane.showMessageDialog(null, "Ya existe el proyecto");
+                    }
+                    else{
+                        String sql = "insert into asistenciasrobot.Proyectos (name) values (?)";
+                        try {
+                            PreparedStatement ps = conn.prepareStatement(sql);
+                            ps.setString(1, textNombreProyecto.getText());
+                            ps.executeUpdate();
+                            JOptionPane.showMessageDialog(null, "Agregado");
+                            jComboBoxProyectos.removeAllItems();
+                        }
+                        catch (SQLException | HeadlessException e){
+                        }
+                        try {
+                            SelectNameFromSQL("asistenciasrobot.Proyectos", jComboBoxProyectos);
+                        } catch (SQLException ex) {
+                            Logger.getLogger(AsistenciasGUI.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        textNombreProyecto.setText("");
+                    }
+                }
+            }catch (SQLException ex) {
+                Logger.getLogger(AsistenciasGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }finally {
+                try {
+                    rs.close();
+                    stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(AsistenciasGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         }
     }//GEN-LAST:event_btnAgregarProyectoActionPerformed
 
