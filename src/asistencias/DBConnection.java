@@ -16,6 +16,9 @@ import java.sql.SQLException;
 public class DBConnection {
     private Connection DBConnection;
     public Connection connect() {
+        /**utiliza el driver "jdbc" para conectarse a la base de datos en la computadora, 
+         * en la direccion que se da, con el usurario y contraseña que se dan.
+         **/
         try{
             Class.forName("com.mysql.jdbc.Driver");
             System.out.println("Connection Success");

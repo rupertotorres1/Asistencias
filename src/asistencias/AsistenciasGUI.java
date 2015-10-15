@@ -22,13 +22,20 @@ import javax.swing.JTextField;
  * @author rup
  */
 public class AsistenciasGUI extends javax.swing.JFrame {
+    /**se crea un objeto "conn", del tipo Connection, que llama al metodo "connect()" de la 
+     * clase DBConnection, para que la clase main se conecte a la base de datos.
+     **/ 
     static Connection conn = new DBConnection().connect();
      /**
      * Creates new form AsistenciasGUI
      */
     public AsistenciasGUI() {
         initComponents();
+        //para que no se pueda editar la checkbox en la seccion de "Datos", ya que esta indica si un alumno tiene becario
         checkBecarioDatos.setEnabled(false);
+        /**se llama a los metodos que hacen que las ComboBoxes se llenen con los nombres de 
+         * los alumnos y proyectos, dependiendo del caso.
+         **/ 
         try {
             SelectNameFromSQL("asistenciasrobot.Alumnos", jComboBoxAlumnos);
             SelectNameFromSQL("asistenciasrobot.Alumnos", comboDatosAlumnos);
@@ -53,6 +60,7 @@ public class AsistenciasGUI extends javax.swing.JFrame {
         btnTomarLista = new javax.swing.JButton();
         btnCerrar = new javax.swing.JButton();
         btnNuevoSemestre = new javax.swing.JButton();
+        jLabel16 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jTextField5 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -146,6 +154,8 @@ public class AsistenciasGUI extends javax.swing.JFrame {
             }
         });
 
+        jLabel16.setText("Hecho por: Ruperto Torres");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -163,13 +173,15 @@ public class AsistenciasGUI extends javax.swing.JFrame {
                         .addComponent(btnNuevoSemestre, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(409, 409, 409)
-                        .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel16))
                 .addContainerGap(189, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(48, 48, 48)
+                .addComponent(jLabel16)
+                .addGap(33, 33, 33)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(136, 136, 136)
                 .addComponent(btnTomarLista, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -667,7 +679,12 @@ public class AsistenciasGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_textNombreAlumnoActionPerformed
 
     private void btnAgregarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarAlumnoActionPerformed
-        // TODO add your handling code here:
+        /**En la seccion de "Alumnos", cuando se pica al boton de "agregar" alumno, se agrega el
+         * alumno con el nombre, becario(si o no) y semestre que se ingresaron. Pero primero 
+         * checa que no este vacio el nombre, y que el nombre no exista ya en la base de datos.
+         * Se quitan los datos de las ComboBoxes, para volver a llamar a los metodos "Select..."
+         * que los llenan y que esten actualizados.
+         **/
         if(textNombreAlumno.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Insertar Nombre");
         }
@@ -676,7 +693,6 @@ public class AsistenciasGUI extends javax.swing.JFrame {
             ResultSet rs = null;
             try {
                 stmt = conn.createStatement();
-                //rs = stmt.executeQuery("SELECT EXISTS(SELECT 1 FROM asistenciasrobot.Alumnos WHERE name = '" + (String)textNombreAlumno.getText() + "'");
                 rs = stmt.executeQuery("SELECT count(*) as count FROM asistenciasrobot.Alumnos WHERE name = '" + (String)textNombreAlumno.getText() + "'");
                 if(rs.next()){
                     if(rs.getInt(1)!=0) {
@@ -724,6 +740,10 @@ public class AsistenciasGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxAlumnosActionPerformed
 
     private void btnEliminarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarAlumnoActionPerformed
+        /**Se elimina de la base de datos al alumno seleccionado en la ComboBox. Si no hay ningun alumno
+         * seleccionado, muestra un mensaje de eso. Despues de que se elimina al alumno, se actualizan
+         * las ComboBoxes del programa.
+         */
         if ((String)jComboBoxAlumnos.getSelectedItem()==null){
             JOptionPane.showMessageDialog(null, "No hay alumno seleccionado");
         }    
@@ -753,6 +773,11 @@ public class AsistenciasGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxProyectosActionPerformed
 
     private void btnTerminarProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTerminarProyectoActionPerformed
+        /**Este metodo es igual al de eliminar alumnos, solo que para proyectos.
+         * Se elimina de la base de datos al proyecto que se selecciona en la ComboBox. 
+         * Si no se selecciona ninguno, muestra un mensaje sobre eso. Se actualizan las
+         * ComboBoxes despues de que se eliminen proyectos.
+         */
         if ((String)jComboBoxProyectos.getSelectedItem()==null){
             JOptionPane.showMessageDialog(null, "No hay proyecto seleccionado");
         }    
@@ -780,38 +805,20 @@ public class AsistenciasGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_textNombreProyectoActionPerformed
 
     private void btnAgregarProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProyectoActionPerformed
-        // TODO add your handling code here:
+        /**Con este metodo se crean los proyectos en los que estan trabajando los alumnos.
+         * Se agregan los proyectos a la base de datos con el nombre que se inserta, siempre
+         * y cuando se inserte un nombre y que el proyecto no exista ya, de lo contrario se
+         * muestra un mensaje sobre eso. Esto pasa cuando se le pica al boton de "agregar"
+         * proyecto en la seccion de Proyectos.
+         **/
         if(textNombreProyecto.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Insertar Nombre");
-        }
-        /**else{
-            String sql = "insert into asistenciasrobot.Proyectos (name) values (?)";
-            try {
-                PreparedStatement ps = conn.prepareStatement(sql);
-                ps.setString(1, textNombreProyecto.getText());
-                ps.executeUpdate();
-                JOptionPane.showMessageDialog(null, "Agregado");
-                jComboBoxProyectos.removeAllItems();
-            }
-            catch (SQLException | HeadlessException e){
-            }
-            try {
-                SelectNameFromSQL("asistenciasrobot.Proyectos", jComboBoxProyectos);
-            } catch (SQLException ex) {
-                Logger.getLogger(AsistenciasGUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            textNombreProyecto.setText("");
-        }
-        **/ 
-        
-        
-     
+        }     
         else {
             Statement stmt = null;
             ResultSet rs = null;
             try {
                 stmt = conn.createStatement();
-                //rs = stmt.executeQuery("SELECT EXISTS(SELECT 1 FROM asistenciasrobot.Alumnos WHERE name = '" + (String)textNombreAlumno.getText() + "'");
                 rs = stmt.executeQuery("SELECT count(*) as count FROM asistenciasrobot.Proyectos WHERE name = '" + (String)textNombreProyecto.getText() + "'");
                 if(rs.next()){
                     if(rs.getInt(1)!=0) {
@@ -850,15 +857,28 @@ public class AsistenciasGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarProyectoActionPerformed
 
     private void btnTomarListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTomarListaActionPerformed
+        /**crea una objeto del tipo FrameTomarLista, por lo que se crea una
+         * frame con la que se va a tomar lista y se hace visible la frame.
+         * Esto pasa cuando se le pica al boton "Tomar Lista" en la seccion 
+         * de Tomar Lista.
+         **/
         FrameTomarLista ftl = new FrameTomarLista();
         ftl.setVisible(true);
     }//GEN-LAST:event_btnTomarListaActionPerformed
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+        //cierra el programa, cuando se le pica al boton "cerrar"
         System.exit(0);
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void btnDatosAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatosAlumnosActionPerformed
+        /**Cuando se le pica al boton de "datos" en la seccion de Datos,
+         * se llama a metodos que buscan en las bases de datos y luego
+         * se llenan de informacion sobre el alumno seleccionado las 
+         * TextBoxes y la checkBox. Si no habia ningun alumno seleccionado
+         * en la ComboBox, se muestra un mensaje sobre eso y se ponen 
+         * en blanco las TextBoxes y la checkBox.
+         */
         if ((String)comboDatosAlumnos.getSelectedItem()==null){
             JOptionPane.showMessageDialog(null, "No hay alumno seleccionado");
             textAsistenciasDatos.setText("");
@@ -883,6 +903,10 @@ public class AsistenciasGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDatosAlumnosActionPerformed
 
     private void btnAgregarBecarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarBecarioActionPerformed
+        /**Agrega becario en robotica al alumno seleccionado en la ComboBox, si
+         * es que hay un alumno seleccionado y se es que no tiene becario en 
+         * robotica actualmente.
+         */ 
         if ((String)jComboBoxAlumnos.getSelectedItem()==null){
             JOptionPane.showMessageDialog(null, "No hay alumno seleccionado");
         } 
@@ -892,7 +916,6 @@ public class AsistenciasGUI extends javax.swing.JFrame {
             try {
                 stmt = conn.createStatement();
                 rs = stmt.executeQuery("SELECT becariorobotica FROM asistenciasrobot.Alumnos WHERE name = '" + (String)jComboBoxAlumnos.getSelectedItem() + "'");
-                 // get the number of rows from the result set
                 if(rs.next()){
                     if(rs.getBoolean(1)==true) {
                         JOptionPane.showMessageDialog(null, "Ya cuenta con becario");
@@ -923,6 +946,12 @@ public class AsistenciasGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarBecarioActionPerformed
 
     private void btnNuevoSemestreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoSemestreActionPerformed
+        /**Suma un semestre al semestre que tenian los alumnos. Los alumnos que eran 
+         * de sexto semestre son eliminados de la base de datos, ya que ya no estarian
+         * en la preparatoria. Todos los datos en la base de datos, excepto por los 
+         * nombres, semestres y becario(si o no) de los alumnos, son eliminados.
+         * Se actualizan las ComboBoxes
+         */
         int option = JOptionPane.showConfirmDialog(null, "¿Seguro?", "Nuevo Semestre", JOptionPane.YES_NO_OPTION);
         if (option==0){
             String sql = "DELETE FROM asistenciasrobot.Alumnos WHERE semestre=6";
@@ -968,18 +997,24 @@ public class AsistenciasGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNuevoSemestreActionPerformed
 
     private void btnCerrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrar1ActionPerformed
+        //cierra el programa
         System.exit(0);
     }//GEN-LAST:event_btnCerrar1ActionPerformed
 
     private void btnCerrar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrar2ActionPerformed
+       //cierra el programa
         System.exit(0);
     }//GEN-LAST:event_btnCerrar2ActionPerformed
 
     private void btnCerrar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrar3ActionPerformed
+        //cierra el programa
         System.exit(0);
     }//GEN-LAST:event_btnCerrar3ActionPerformed
     
     static void SelectNameFromSQL(String tableName, JComboBox combobox) throws SQLException {
+        /**metodo para llenar las ComboBoxes con los nombres de los alumnos o proyectos,
+         * dependiendo del caso. Se ordenan alphabeticamente.
+         */
         Statement stmt = null;
         ResultSet rs = null;
         try {
@@ -995,12 +1030,15 @@ public class AsistenciasGUI extends javax.swing.JFrame {
     }
     
     private void SelectIntParaTextboxSQL(String columna, JTextField textfield) throws SQLException {
+        /**metodo para llenar un TextBox con una variable tipo entera que se toma de la base de datos.
+         * Por ejemplo, se utilizo en la parte de los Datos, para mostrar el total de asistencias y 
+         * faltas.
+         */
         Statement stmt = null;
         ResultSet rs = null;
         try {
             stmt = conn.createStatement();
             rs = stmt.executeQuery("SELECT " + columna + " FROM asistenciasrobot.Alumnos WHERE name = '" + (String)comboDatosAlumnos.getSelectedItem() + "'");
-             // get the number of rows from the result set
             if(rs.next()){
                 textfield.setText(String.valueOf(rs.getInt(1)));
             }   
@@ -1011,12 +1049,15 @@ public class AsistenciasGUI extends javax.swing.JFrame {
     }
     
     private void SelectFloatParaTextboxSQL(String columna, JTextField textfield) throws SQLException {
+        /**metodo para llenar un TextBox con una variable tipo Float que se toma de la base de datos.
+         * Por ejemplo, se utilizo en la parte de los Datos, para mostrar el total de horas que habian
+         * asistido los alumnos.
+         **/
         Statement stmt = null;
         ResultSet rs = null;
         try {
             stmt = conn.createStatement();
             rs = stmt.executeQuery("SELECT " + columna + " FROM asistenciasrobot.Alumnos WHERE name = '" + (String)comboDatosAlumnos.getSelectedItem() + "'");
-             // get the number of rows from the result set
             if(rs.next()){
                 textfield.setText(String.valueOf(rs.getFloat(1)));
             }   
@@ -1027,12 +1068,15 @@ public class AsistenciasGUI extends javax.swing.JFrame {
     }
     
     private void SelectStringParaTextboxSQL(String columna, JTextField textfield) throws SQLException {
+        /**metodo para llenar un TextBox con una variable tipo String que se toma de la base de datos.
+         * Por ejemplo, se utilizo en la parte de los Datos, para mostrar el ultimo proyecto en el
+         * que trabajo un alumno.
+         **/
         Statement stmt = null;
         ResultSet rs = null;
         try {
             stmt = conn.createStatement();
             rs = stmt.executeQuery("SELECT " + columna + " FROM asistenciasrobot.Alumnos WHERE name = '" + (String)comboDatosAlumnos.getSelectedItem() + "'");
-             // get the number of rows from the result set
             if(rs.next()){
                 textfield.setText(rs.getString(1));
             }   
@@ -1043,12 +1087,16 @@ public class AsistenciasGUI extends javax.swing.JFrame {
     }
     
     private void SelectBooleanParaTextboxSQL() throws SQLException {
+        /**metodo para marcar un checkbox true o false, dependiendo del valor
+         * que tiene una variable en la base de datos. Por ejemplo, se utilizo
+         * en la parte de los Datos, ya que si la variable de tener becario para 
+         * un alumno era true, va a tener la checkbox marcada.
+         */
         Statement stmt = null;
         ResultSet rs = null;
         try {
             stmt = conn.createStatement();
             rs = stmt.executeQuery("SELECT becariorobotica FROM asistenciasrobot.Alumnos WHERE name = '" + (String)comboDatosAlumnos.getSelectedItem() + "'");
-             // get the number of rows from the result set
             if(rs.next()){
                 checkBecarioDatos.setEnabled(true);
                 checkBecarioDatos.setSelected(rs.getBoolean(1));
@@ -1121,6 +1169,7 @@ public class AsistenciasGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

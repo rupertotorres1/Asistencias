@@ -88,6 +88,7 @@
                               <EmptySpace min="-2" pref="409" max="-2" attributes="0"/>
                               <Component id="btnCerrar" min="-2" pref="97" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="jLabel16" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="189" max="32767" attributes="0"/>
                   </Group>
@@ -96,7 +97,8 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                      <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                       <Component id="jTextField1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="136" max="-2" attributes="0"/>
                       <Component id="btnTomarLista" min="-2" pref="97" max="-2" attributes="0"/>
@@ -165,6 +167,11 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNuevoSemestreActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel16">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Hecho por: Ruperto Torres"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>
