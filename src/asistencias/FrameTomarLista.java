@@ -24,6 +24,7 @@ public class FrameTomarLista extends javax.swing.JFrame {
     public FrameTomarLista() {
         initComponents();
         try {
+            //llena las ComboBoxes de la frame con los nombres de alumnos y proyectos
             AsistenciasGUI.SelectNameFromSQL("asistenciasrobot.Alumnos", comboListaAlumnos);
             AsistenciasGUI.SelectNameFromSQL("asistenciasrobot.Proyectos", comboListaProyectos);
         } catch (SQLException ex) {
@@ -183,10 +184,17 @@ public class FrameTomarLista extends javax.swing.JFrame {
     }//GEN-LAST:event_comboListaAlumnosActionPerformed
 
     private void btnListaRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaRegresarActionPerformed
+        //cierra la frame al picar "regresar"
         dispose();
     }//GEN-LAST:event_btnListaRegresarActionPerformed
 
     private void btnListaFaltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaFaltaActionPerformed
+        /**Cuando se pica el boton de falta, se le agrega una falta a las
+         * faltas que tenia el alumno. Si no se selecciono un alumno, se 
+         * muestra un mensaje sobre eso. El alumno del que ya se tomo lista
+         * es retirado de la ComboBox con el nombre de los alumnos (y solo
+         * aparecera otra vez al volver a tomar lista).
+         */
         if ((String)comboListaAlumnos.getSelectedItem()==null){
             JOptionPane.showMessageDialog(null, "No hay alumno seleccionado");
         }
@@ -205,6 +213,12 @@ public class FrameTomarLista extends javax.swing.JFrame {
     }//GEN-LAST:event_btnListaFaltaActionPerformed
 
     private void btnListaAsistenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaAsistenciaActionPerformed
+        /**Este metodo es muy parecido al del boton de falta, solo que aqui tiene
+         * que estar seleccionado el alumno y el proyecto para poder poner asistencia,
+         * y cuando se toma, se le suma una asistencia y las horas ingresadas, y se 
+         * pone el proyecto ingresado como el ultimo proyecto en el que trabajo el
+         * alumno en sus datos.
+         */
         if (((String)comboListaAlumnos.getSelectedItem()==null)||((String)comboListaProyectos.getSelectedItem()==null)){
             JOptionPane.showMessageDialog(null, "No hay alumno y/o proyecto seleccionado");
         }
